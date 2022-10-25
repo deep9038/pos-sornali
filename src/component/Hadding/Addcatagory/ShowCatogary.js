@@ -2,7 +2,7 @@ import React from "react";
 
 import "bootstrap/dist/css/bootstrap.css";
 import IndivisualCatogaryItem from "./IndivisualCatogaryItem";
-const ShowCatogary = ({ctagoryes}) => {
+const ShowCatogary = ({ctagoryes,setShowCatogaryItem,setCatagoryIdForupdate,setCatimge,setCatName}) => {
   return (
     <div
       style={{
@@ -23,7 +23,7 @@ const ShowCatogary = ({ctagoryes}) => {
       {ctagoryes.map((item)=>{
         console.log(item);
         return(
-        <IndivisualCatogaryItem item={item} />
+        <IndivisualCatogaryItem item={item} setCatName={setCatName} setCatimge={setCatimge} setShowCatogaryItem={setShowCatogaryItem} setCatagoryIdForupdate={setCatagoryIdForupdate}/>
         )
       })}
       

@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 
 const AddedItems = ({ onRemove, cartItem, onAdd,setTolalPrice}) => {
   const itemsPrice = cartItem.reduce((a, c) => a + c.qty * c.itemPrice, 0);
-  const taxPrice = itemsPrice * 0.1;
+  const taxPrice = itemsPrice * 0.10;
   setTolalPrice(itemsPrice+taxPrice)
 
   return (

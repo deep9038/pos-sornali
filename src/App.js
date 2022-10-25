@@ -118,7 +118,7 @@ function App() {
             top: "0",
           }}
         >
-          < Bill setOpenBill={setOpenBill} cartItem={cartItem} totalPrice={totalPrice} />
+          < Bill setOpenBill={setOpenBill} cartItem={cartItem} totalPrice={totalPrice} customer={customer} />
         </div>
       )}
     </div>

@@ -17,6 +17,7 @@ const AddCatagory = ({ setOpenCart,ctagoryes }) => {
   const [catImag, setCatimge] = useState();
   const [catName, setCatName] = useState();
   const [showCatogaryItem, setShowCatogaryItem] = useState(false);
+  const [catagoryIdforupdat,setCatagoryIdForupdate]=useState()
   // const [ allCat,setAllcat]=useState(false)
   const baseUrl = "http://127.0.0.1:2000";
   const config = { headers: { "Content-Type": "multipart/form-data" } };
@@ -24,6 +25,20 @@ const AddCatagory = ({ setOpenCart,ctagoryes }) => {
     e.preventDefault();
     setOpenCart(false);
     console.log(catImag);
+
+
+    {catagoryIdforupdat?
+      
+      axios.post(
+      `${baseUrl}/api/categoryUpdate_post`,
+      {
+        categoryUpdateId:catagoryIdforupdat._id,
+        categoryName: catName,
+        categoryImage: catImag,
+      },
+      config
+    ).then((res)=>console.log(res))
+      :
     axios
       .post(
         `${baseUrl}/api/addCategory_post`,
@@ -39,7 +54,11 @@ const AddCatagory = ({ setOpenCart,ctagoryes }) => {
       .catch(function (error) {
         console.log(error.response.data.message);
       });
+    }
   };
+
+
+  
 
   let showAllCatogary = () => {
     setShowCatogaryItem(!showCatogaryItem);
@@ -96,10 +115,7 @@ const AddCatagory = ({ setOpenCart,ctagoryes }) => {
           </FButton>
         </Buttongroup>
       </Addcatagory>
-      { showCatogaryItem && <ShowCatogary ctagoryes={ctagoryes}/> }
-      
-
-      
+      { showCatogaryItem &&  <ShowCatogary setCatName={setCatName} setCatimge={setCatimge} setShowCatogaryItem={setShowCatogaryItem} ctagoryes={ctagoryes} setCatagoryIdForupdate={setCatagoryIdForupdate}/> }
     </>
   );
 };

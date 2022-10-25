@@ -2,7 +2,20 @@ import React from 'react'
 import {AiFillEdit,AiFillDelete} from 'react-icons/ai'
 import "bootstrap/dist/css/bootstrap.css";
 import Switch from "@material-ui/core/Switch";
-const IndivisualCatogaryItem = ({item}) => {
+import axios from 'axios';
+const IndivisualCatogaryItem = ({item,setShowCatogaryItem,setCatagoryIdForupdate,setCatimge,setCatName}) => {
+   const onEdit=()=>{
+    setCatName(item.categoryName)
+    setCatimge(item.categoryImage[0])
+    setCatagoryIdForupdate(item)
+    setShowCatogaryItem(false)
+    axios.get(`http://127.0.0.1:2000/api/categoryDelete/${item._id}`)
+    .then((res)=>{
+        console.log(res);
+
+    })
+   }
+    
   return (
    <>
    <div className='items-info' style={{display:"flex",justifyContent:"space-between",alignItems:"center",backgroundColor:'darkgray',padding:'4px',borderRadius:'4px',marginBottom:'5px'}}>
@@ -18,7 +31,7 @@ const IndivisualCatogaryItem = ({item}) => {
 
                 
                 <div className='button-item' style={{width:"100px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                   <h5 style={{cursor: 'pointer',color:"rgb(255, 230, 0)"}}> <AiFillEdit /></h5>
+                   <h5 style={{cursor: 'pointer',color:"rgb(255, 230, 0)"}} onClick={onEdit}> <AiFillEdit /></h5>
                    <h5 style={{cursor: 'pointer',color:"red",marginLeft:"10px"}}> <AiFillDelete /></h5>
                    <h5><Switch/>  </h5>
                     
